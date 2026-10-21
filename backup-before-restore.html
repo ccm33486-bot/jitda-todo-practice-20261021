@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5ef5b">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%23b8d966'/%3E%3Cpath d='m10 21 7 7 14-16' fill='none' stroke='%23193d2a' stroke-linecap='round' stroke-linejoin='round' stroke-width='4'/%3E%3C/svg%3E">
+  <title>GitHub 복원 연습 중</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #193d2a;
+      --green: #285c38;
+      --leaf: #b8d966;
+      --sun: #f5ef5b;
+      --paper: #fffef3;
+      --line: #d8dfb9;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      padding: 32px 20px;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      background-color: #f5ef5b;
+      background-image: radial-gradient(#d7d24c 1px, transparent 1px);
+      background-size: 18px 18px;
+      font-family: "Arial", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    }
+
+    .page { width: min(100%, 590px); }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 12px 5px;
+      color: #426b37;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .sun-mark {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgb(40 92 56 / 12%);
+    }
+
+    .card {
+      overflow: hidden;
+      border: 2px solid var(--green);
+      border-radius: 7px;
+      background: var(--paper);
+      box-shadow: 9px 9px 0 var(--green);
+    }
+
+    header {
+      padding: 30px 32px 24px;
+      background: var(--leaf);
+      border-bottom: 2px solid var(--green);
+    }
+
+    .date {
+      margin: 0 0 8px;
+      color: #31583b;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 8vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -.06em;
+    }
+
+    .intro {
+      margin: 12px 0 0;
+      color: #31583b;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .list-wrap { padding: 10px 32px 26px; }
+
+    .list-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 0 12px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .counter {
+      padding: 5px 9px;
+      border: 1px solid var(--green);
+      border-radius: 99px;
+      background: #f4f8df;
+      font-size: 12px;
+      letter-spacing: 0;
+    }
+
+    .task-list { margin: 0; padding: 0; list-style: none; }
+
+    .task {
+      display: grid;
+      grid-template-columns: 25px minmax(0, 1fr);
+      align-items: center;
+      gap: 13px;
+      min-height: 74px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .task input[type="checkbox"] {
+      width: 23px;
+      height: 23px;
+      margin: 0;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+
+    .task input[type="text"] {
+      width: 100%;
+      min-height: 48px;
+      padding: 8px 0;
+      border: 0;
+      outline: 0;
+      color: var(--ink);
+      background: transparent;
+      font: inherit;
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    .task input[type="text"]::placeholder { color: #9a9f7f; }
+
+    .task input[type="text"]:focus-visible {
+      box-shadow: 0 2px 0 var(--green);
+    }
+
+    .task.is-done input[type="text"] {
+      color: #7b866d;
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+    }
+
+    .task input[type="checkbox"]:focus-visible,
+    .clear-button:focus-visible {
+      outline: 3px solid #8a9f28;
+      outline-offset: 3px;
+    }
+
+    .bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-top: 19px;
+    }
+
+    .encouragement { margin: 0; color: #60714c; font-size: 13px; }
+
+    .clear-button {
+      min-height: 42px;
+      padding: 0 14px;
+      border: 1px solid var(--green);
+      border-radius: 4px;
+      color: var(--paper);
+      background: var(--green);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 140ms ease, transform 100ms ease;
+    }
+
+    .clear-button:hover { background: #194629; }
+    .clear-button:active { transform: translateY(1px); }
+
+    @media (max-width: 480px) {
+      body { padding: 22px 18px; }
+      header { padding: 25px 22px 21px; }
+      .list-wrap { padding: 8px 22px 22px; }
+      .task { min-height: 68px; }
+      .task input[type="text"] { font-size: 16px; }
+      .bottom-row { align-items: flex-start; flex-direction: column; }
+      .clear-button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="eyebrow"><span class="sun-mark" aria-hidden="true"></span> A LITTLE PLAN FOR TODAY</p>
+    <section class="card" aria-labelledby="page-title">
+      <header>
+        <p class="date" id="today-date"></p>
+        <h1 id="page-title">GitHub 복원 연습 중</h1>
+        <p class="intro">하나씩 체크하며, 오늘을 가볍게 완성해요.</p>
+      </header>
+      <div class="list-wrap">
+        <div class="list-heading">
+          <span>MY THREE THINGS</span>
+          <span class="counter" id="task-counter" aria-live="polite">0 / 3 완료</span>
+        </div>
+        <ul class="task-list" id="task-list" aria-label="오늘의 할 일 목록"></ul>
+        <div class="bottom-row">
+          <p class="encouragement" id="encouragement">오늘도 한 걸음씩, 차근차근!</p>
+          <button class="clear-button" id="clear-button" type="button">오늘 목록 초기화</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const storageKey = "todays-three-tasks-v1";
+    const defaults = ["오늘 꼭 해내고 싶은 일", "나를 위한 작은 일", "내일을 위한 준비"];
+    const taskList = document.querySelector("#task-list");
+    const counter = document.querySelector("#task-counter");
+    const encouragement = document.querySelector("#encouragement");
+
+    const date = new Intl.DateTimeFormat("ko-KR", {
+      year: "numeric", month: "long", day: "numeric", weekday: "long"
+    }).format(new Date());
+    document.querySelector("#today-date").textContent = date;
+
+    let tasks = defaults.map((text) => ({ text, done: false }));
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey));
+      if (Array.isArray(saved) && saved.length === 3 && saved.every((task) =>
+        task && typeof task.text === "string" && typeof task.done === "boolean"
+      )) tasks = saved;
+    } catch {
+      // Keep the default list if browser storage is unavailable or invalid.
+    }
+
+    function saveTasks() {
+      try { localStorage.setItem(storageKey, JSON.stringify(tasks)); } catch { /* The checklist still works for this visit. */ }
+    }
+
+    function renderTasks() {
+      taskList.replaceChildren();
+      tasks.forEach((task, index) => {
+        const row = document.createElement("li");
+        row.className = `task${task.done ? " is-done" : ""}`;
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = task.done;
+        checkbox.setAttribute("aria-label", `${index + 1}번째 할 일 완료`);
+        checkbox.addEventListener("change", () => {
+          tasks[index].done = checkbox.checked;
+          saveTasks();
+          renderTasks();
+        });
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = task.text;
+        input.maxLength = 80;
+        input.placeholder = `${index + 1}번째 할 일을 입력하세요`;
+        input.setAttribute("aria-label", `${index + 1}번째 할 일 내용`);
+        input.addEventListener("input", () => {
+          tasks[index].text = input.value;
+          saveTasks();
+        });
+
+        row.append(checkbox, input);
+        taskList.append(row);
+      });
+
+      const completed = tasks.filter((task) => task.done).length;
+      counter.textContent = `${completed} / 3 완료`;
+      encouragement.textContent = completed === 3
+        ? "오늘의 세 가지를 모두 해냈어요! 멋져요."
+        : completed > 0
+          ? "좋아요, 하나씩 해내고 있어요."
+          : "오늘도 한 걸음씩, 차근차근!";
+    }
+
+    document.querySelector("#clear-button").addEventListener("click", () => {
+      tasks = defaults.map((text) => ({ text, done: false }));
+      saveTasks();
+      renderTasks();
+    });
+
+    renderTasks();
+  </script>
+</body>
+</html>
