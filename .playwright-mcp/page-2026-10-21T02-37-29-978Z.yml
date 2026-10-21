@@ -1,0 +1,30 @@
+- main [ref=e2]:
+  - paragraph [ref=e3]: A LITTLE PLAN FOR TODAY
+  - region "오늘의 할 일" [ref=e5]:
+    - generic [ref=e6]:
+      - paragraph [ref=e7]: 2026년 10월 21일 수요일
+      - heading "오늘의 할 일" [level=1] [ref=e8]
+      - paragraph [ref=e9]: 하나씩 체크하며, 오늘을 가볍게 완성해요.
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]: MY THREE THINGS
+        - generic [ref=e13]: 0 / 3 완료
+      - list "오늘의 할 일 목록" [ref=e14]:
+        - listitem [ref=e15]:
+          - checkbox "1번째 할 일 완료" [ref=e16] [cursor=pointer]
+          - textbox "1번째 할 일 내용" [ref=e17]:
+            - /placeholder: 1번째 할 일을 입력하세요
+            - text: 오늘 꼭 해내고 싶은 일
+        - listitem [ref=e18]:
+          - checkbox "2번째 할 일 완료" [ref=e19] [cursor=pointer]
+          - textbox "2번째 할 일 내용" [ref=e20]:
+            - /placeholder: 2번째 할 일을 입력하세요
+            - text: 나를 위한 작은 일
+        - listitem [ref=e21]:
+          - checkbox "3번째 할 일 완료" [ref=e22] [cursor=pointer]
+          - textbox "3번째 할 일 내용" [ref=e23]:
+            - /placeholder: 3번째 할 일을 입력하세요
+            - text: 내일을 위한 준비
+      - generic [ref=e24]:
+        - paragraph [ref=e25]: 작은 한 걸음부터 시작해 보세요.
+        - button "오늘 목록 초기화" [ref=e26] [cursor=pointer]
